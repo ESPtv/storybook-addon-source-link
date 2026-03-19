@@ -1,0 +1,27 @@
+{
+  "private": true,
+  "name": "e2e-svelte",
+  "type": "module",
+  "scripts": {
+    "storybook": "storybook dev -p 6008",
+    "build-storybook": "storybook build",
+    "test:dev": "playwright test",
+    "test:build": "playwright test -c playwright.config.build.ts",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "build-and-test": "pnpm build-storybook && pnpm test:build",
+    "lint": "biome check",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "catalog:",
+    "@storybook/svelte-vite": "^10.3.1",
+    "@sveltejs/vite-plugin-svelte": "^7.0.0",
+    "@types/node": "catalog:",
+    "serve": "^14.2.4",
+    "vite": "^8.0.0",
+    "storybook": "^10.3.1",
+    "storybook-addon-source-link": "workspace:*",
+    "svelte": "catalog:"
+  }
+}

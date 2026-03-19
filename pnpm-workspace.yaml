@@ -9,6 +9,8 @@ catalog:
   '@storybook/addon-docs': ^10.0.0
   '@storybook/icons': ^1.4.0
   '@storybook/react-vite': ^10.0.0
+  '@storybook/svelte-vite': 10.0.0
+  svelte: ^5.0.0
   '@types/node': 20.19.9
   '@types/react': ^18.3.27
   '@types/react-dom': ^18.3.7
