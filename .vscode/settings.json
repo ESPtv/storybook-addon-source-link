@@ -16,5 +16,12 @@
 	"[markdown]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"biome.lsp.bin": "node_modules/@biomejs/biome/bin/biome"
+	"biome.lsp.bin": "node_modules/@biomejs/biome/bin/biome",
+	"debug.javascript.defaultRuntimeExecutable": {
+		"pwa-node": "${workspaceFolder}/.vscode/mise-tools/node"
+	},
+	"go.goroot": "${workspaceFolder}/.vscode/mise-tools/goRoot",
+	"go.alternateTools": {
+		"go": "${workspaceFolder}/.vscode/mise-tools/go"
+	}
 }
