@@ -1,6 +1,6 @@
-import { type FC, useEffect } from "react";
+import { type FC, useEffect as useReactEffect } from "react";
 import type { Addon_DecoratorFunction } from "storybook/internal/types";
-import { addons } from "storybook/preview-api";
+import { addons, useEffect as useSbEffect } from "storybook/preview-api";
 import { EVENTS } from "../constants";
 import type {
 	LinkEntry,
@@ -9,14 +9,11 @@ import type {
 	SourceLinkParameter,
 } from "../types";
 
-export const useParameterResolver = (
-	parameter: SourceLinkParameter,
-	disabled?: boolean,
-) => {
-	useEffect(() => {
+// Creates the channel listener effect function, returning a cleanup callback.
+// Used by both the story decorator and the React docs component.
+const createParameterResolverEffect =
+	(parameter: SourceLinkParameter) => () => {
 		const channel = addons.getChannel();
-
-		if (disabled) return;
 
 		const handler = (context: ResolveContext) => {
 			const resolvedParameters = Object.entries(parameter.links)
@@ -38,6 +35,17 @@ export const useParameterResolver = (
 		return () => {
 			channel.off(EVENTS.REQUEST_RESOLVABLE_PARAM, handler);
 		};
+	};
+
+// For story decorators: uses Storybook's own framework-agnostic useEffect from
+// preview-api so this works in React, Svelte, Vue, and any other framework.
+export const useParameterResolver = (
+	parameter: SourceLinkParameter,
+	disabled?: boolean,
+) => {
+	useSbEffect(() => {
+		if (disabled) return;
+		return createParameterResolverEffect(parameter)();
 	});
 };
 
@@ -50,10 +58,12 @@ export const withParameterResolver: Addon_DecoratorFunction = (
 	return StoryFn();
 };
 
+// For the React docs container component: uses React's own useEffect so it
+// participates correctly in the React rendering lifecycle.
 export const ParameterResolver: FC<{
 	parameter: SourceLinkParameter;
 }> = ({ parameter }) => {
-	useParameterResolver(parameter);
+	useReactEffect(createParameterResolverEffect(parameter));
 	return null;
 };
 

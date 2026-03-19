@@ -7,7 +7,7 @@ const config: StorybookConfig = {
 		"../stories/**/*.mdx",
 		"../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
 	],
-	addons: ["storybook-addon-source-link"],
+	addons: ["@storybook/addon-docs", "storybook-addon-source-link"],
 	framework: {
 		name: "@storybook/svelte-vite",
 		options: { docgen: false },
