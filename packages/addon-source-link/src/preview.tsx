@@ -20,7 +20,7 @@ export const parameters = {
 		links: {
 			"component-editor": ({ importPath, rootPath }) => {
 				if (!rootPath) return undefined;
-				const componentPath = importPath.replace(/\.stories\.tsx?$/, ".tsx");
+				const componentPath = importPath.replace(/\.stories(\.\w+)$/, "$1");
 				const componentFileUrl = getFileUrl(rootPath, componentPath);
 				return {
 					type: "editor",
