@@ -4,7 +4,15 @@ import type { API_LeafEntry } from "storybook/internal/types";
 export type IconName = Exclude<keyof typeof iconsModule, "iconList">;
 
 export type SourceLinkParameter = {
-	links: Record<string, Resolvable<LinkEntry>>;
+	/**
+	 * A map of link IDs to link entries. Set a value to `false` to explicitly
+	 * disable a default link (e.g. `"component-editor": false`).
+	 *
+	 * Note: `undefined` is not supported here — Storybook's parameter merge
+	 * silently drops `undefined` values, so the default would persist. Use
+	 * `false` instead.
+	 */
+	links: Record<string, Exclude<Resolvable<LinkEntry>, undefined> | false>;
 };
 
 export type ResolveContext = {

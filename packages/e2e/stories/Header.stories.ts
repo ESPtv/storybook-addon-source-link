@@ -48,8 +48,8 @@ export const WithCustomLinks: Story = {
 		sourceLink: {
 			links: {
 				// デフォルトリンクを無効化
-				"component-editor": undefined,
-				"story-editor": undefined,
+				"component-editor": false,
+				"story-editor": false,
 				// カスタムリンクを追加
 				"header-github": {
 					label: "Open Header on GitHub",
@@ -86,8 +86,8 @@ export const WithFunctionLinks: Story = {
 		sourceLink: {
 			links: {
 				// デフォルトリンクを無効化
-				"component-editor": undefined,
-				"story-editor": undefined,
+				"component-editor": false,
+				"story-editor": false,
 				// 関数型リンクを追加
 				"dynamic-github": ({ importPath, isStaticBuild }: ResolveContext) => {
 					if (isStaticBuild) {

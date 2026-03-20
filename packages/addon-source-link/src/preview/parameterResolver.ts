@@ -68,9 +68,12 @@ export const ParameterResolver: FC<{
 };
 
 const resolveLinkEntry = (
-	value: Resolvable<LinkEntry>,
+	value: Exclude<Resolvable<LinkEntry>, undefined> | false,
 	params: ResolveContext,
 ): LinkEntry => {
+	if (value === false) {
+		return undefined;
+	}
 	if (value instanceof Function) {
 		return value(params);
 	}

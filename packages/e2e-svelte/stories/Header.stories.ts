@@ -35,8 +35,8 @@ export const WithCustomLinks: Story = {
 	parameters: {
 		sourceLink: {
 			links: {
-				"component-editor": undefined,
-				"story-editor": undefined,
+				"component-editor": false,
+				"story-editor": false,
 				"header-github": {
 					label: "Open Header on GitHub",
 					href: "https://github.com/elecdeer/storybook-addon-source-link/blob/main/packages/e2e-svelte/stories/Header.svelte",
@@ -62,8 +62,8 @@ export const WithFunctionLinks: Story = {
 	parameters: {
 		sourceLink: {
 			links: {
-				"component-editor": undefined,
-				"story-editor": undefined,
+				"component-editor": false,
+				"story-editor": false,
 				"dynamic-github": ({ importPath, isStaticBuild }: ResolveContext) => ({
 					label: isStaticBuild ? "GitHub (Static Build)" : "GitHub (Dev Mode)",
 					href: `https://github.com/elecdeer/storybook-addon-source-link/blob/main/${joinPath("packages/e2e-svelte", importPath)}`,
