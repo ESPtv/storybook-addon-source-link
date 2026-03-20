@@ -4,6 +4,10 @@
 
 This addon adds links to open the source code of story or components in your editor.
 
+## Changes in this fork
+
+This is a fork of [elecdeer/storybook-addon-source-link](https://github.com/elecdeer/storybook-addon-source-link) with bug fixes to support non-React Storybooks (Svelte, Vue, Angular, etc.).
+
 ## Getting started
 
 ### Requirements
@@ -138,7 +142,7 @@ const preview: Preview = {
       links: {
         "component-editor": ({ importPath, rootPath }) => {
           if (!rootPath) return undefined;
-          const componentPath = importPath.replace(/\.stories\.tsx?$/, ".tsx");
+          const componentPath = importPath.replace(/\.stories(\.\w+)$/, "$1");
           const componentFileUrl = getFileUrl(rootPath, componentPath);
           return {
             type: "editor",
