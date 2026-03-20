@@ -6,6 +6,9 @@ catalog:
   '@changesets/changelog-github': ^0.5.1
   '@changesets/cli': ^2.29.7
   '@playwright/test': ^1.49.1
+  # NOTE: these two are hardcoded (not catalog:) in packages/addon-source-link/package.json
+  # so that the package works as a source dependency outside this monorepo.
+  # Keep those versions in sync when updating here.
   '@storybook/addon-docs': ^10.0.0
   '@storybook/icons': ^1.4.0
   '@storybook/react-vite': ^10.0.0
